@@ -2,6 +2,7 @@ package com.airline.flightmanagement.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 
 @Entity
@@ -27,9 +28,8 @@ public class User {
     @Column(nullable = false)
     private UserRole role;
     
-    @NotNull(message = "Customer category is required")
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = true)
     private CustomerCategory customerCategory;
     
     @NotBlank(message = "Phone number is required")
@@ -64,10 +64,12 @@ public class User {
     
     @NotNull(message = "Date of birth is required")
     @Past(message = "Date of birth must be in the past")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate dob;
     
     @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdAt;
     
     @PrePersist

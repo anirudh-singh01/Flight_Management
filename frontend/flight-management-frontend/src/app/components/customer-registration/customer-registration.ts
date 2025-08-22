@@ -91,14 +91,10 @@ export class CustomerRegistrationComponent implements OnInit {
         city: formValue.city,
         state: formValue.state,
         zipCode: formValue.zipCode,
-        dob: new Date(formValue.dob)
+        dob: formValue.dob
       };
 
-      // Debug logging
-      console.log('Form values:', formValue);
-      console.log('User object being sent:', user);
-      console.log('Date of birth (original):', formValue.dob);
-      console.log('Date of birth (converted):', user.dob);
+
 
       this.userService.registerUser(user).subscribe({
         next: (response) => {

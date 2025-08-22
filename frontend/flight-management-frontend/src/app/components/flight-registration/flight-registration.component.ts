@@ -128,6 +128,6 @@ export class FlightRegistrationComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/admin-dashboard']);
   }
 }

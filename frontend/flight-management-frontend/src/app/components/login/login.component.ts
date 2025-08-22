@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
@@ -21,7 +21,8 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.loginForm = this.formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -47,10 +48,13 @@ export class LoginComponent {
             this.successMessage = 'Login successful!';
             const loginResponse = response.data as LoginResponse;
             
-            // Store user info in session storage
-            sessionStorage.setItem('userId', loginResponse.userId.toString());
-            sessionStorage.setItem('userName', loginResponse.userName);
-            sessionStorage.setItem('userRole', loginResponse.role);
+            // Only access sessionStorage in browser environment
+            if (isPlatformBrowser(this.platformId)) {
+              // Store user info in session storage
+              sessionStorage.setItem('userId', loginResponse.userId.toString());
+              sessionStorage.setItem('userName', loginResponse.userName);
+              sessionStorage.setItem('userRole', loginResponse.role);
+            }
             
             // Redirect based on role
             setTimeout(() => {

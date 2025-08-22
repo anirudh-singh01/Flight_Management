@@ -9,6 +9,8 @@ import { UpdateFlightComponent } from './components/update-flight/update-flight.
 import { UpdateCarrierComponent } from './components/update-carrier/update-carrier.component';
 import { BookFlightComponent } from './components/book-flight/book-flight.component';
 import { ViewBookingsComponent } from './components/view-bookings/view-bookings.component';
+import { CustomerDashboardComponent } from './components/customer-dashboard/customer-dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,5 +25,7 @@ export const routes: Routes = [
   { path: 'book-flight', component: BookFlightComponent },
   { path: 'book-flight/:flightId', component: BookFlightComponent },
   { path: 'view-bookings', component: ViewBookingsComponent },
+  { path: 'customer-dashboard', component: CustomerDashboardComponent },
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: '**', redirectTo: '/login' }
 ];

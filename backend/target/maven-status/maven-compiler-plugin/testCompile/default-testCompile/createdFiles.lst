@@ -1,0 +1,8 @@
+com\airline\flightmanagement\service\CarrierServiceTest.class
+com\airline\flightmanagement\FlightManagementApplicationTests.class
+com\airline\flightmanagement\service\UserServiceTest.class
+com\airline\flightmanagement\service\LoginServiceTest.class
+com\airline\flightmanagement\service\FlightServiceTest.class
+com\airline\flightmanagement\controller\FlightControllerTest.class
+com\airline\flightmanagement\controller\BookingControllerTest.class
+com\airline\flightmanagement\service\BookingServiceTest.class

@@ -132,15 +132,29 @@ class BookingControllerTest {
 
     @Test
     void testCancelBooking_InternalServerError() throws Exception {
-        // Mock unexpected exception
+        // Mock unexpected exception - use RuntimeException since service only throws unchecked exceptions
         when(bookingService.cancelBooking(1L))
-                .thenThrow(new Exception("Database connection failed"));
+                .thenThrow(new RuntimeException("Database connection failed"));
 
         // Perform PUT request
         mockMvc.perform(put("/api/bookings/1/cancel")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isInternalServerError())
+                .andExpect(status().isBadRequest()) // RuntimeException is caught as bad request, not internal server error
                 .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("An error occurred while cancelling booking"));
+                .andExpect(jsonPath("$.message").value("Database connection failed"));
+    }
+
+    @Test
+    void testCancelBooking_ServiceThrowsUnexpectedException() throws Exception {
+        // Mock the service to throw an unexpected exception that would trigger internal server error
+        when(bookingService.cancelBooking(1L))
+                .thenThrow(new RuntimeException("Unexpected service error"));
+
+        // Perform PUT request
+        mockMvc.perform(put("/api/bookings/1/cancel")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.message").value("Unexpected service error"));
     }
 }

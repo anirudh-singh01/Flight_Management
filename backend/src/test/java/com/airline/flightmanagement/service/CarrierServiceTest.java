@@ -316,7 +316,6 @@ class CarrierServiceTest {
         updateDTO.setRefundType(RefundType.TWENTY_DAYS);
 
         when(carrierRepository.findById(1L)).thenReturn(Optional.of(testCarrier));
-        when(carrierRepository.existsByCarrierName("Test Airlines")).thenReturn(false);
         when(carrierRepository.save(any(Carrier.class))).thenReturn(testCarrier);
 
         // Act
@@ -325,7 +324,8 @@ class CarrierServiceTest {
         // Assert
         assertNotNull(result);
         verify(carrierRepository).findById(1L);
-        verify(carrierRepository).existsByCarrierName("Test Airlines");
+        // When name is the same, existsByCarrierName is not called
+        verify(carrierRepository, never()).existsByCarrierName(anyString());
         verify(carrierRepository).save(any(Carrier.class));
     }
 

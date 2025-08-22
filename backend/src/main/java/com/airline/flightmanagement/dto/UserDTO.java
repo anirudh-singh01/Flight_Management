@@ -2,6 +2,7 @@ package com.airline.flightmanagement.dto;
 
 import com.airline.flightmanagement.entity.CustomerCategory;
 import com.airline.flightmanagement.entity.UserRole;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -20,7 +21,6 @@ public class UserDTO {
     @NotNull(message = "Role is required")
     private UserRole role;
     
-    @NotNull(message = "Customer category is required")
     private CustomerCategory customerCategory;
     
     @NotBlank(message = "Phone number is required")
@@ -48,8 +48,10 @@ public class UserDTO {
     
     @NotNull(message = "Date of birth is required")
     @Past(message = "Date of birth must be in the past")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
     
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdAt;
     
     // Default constructor

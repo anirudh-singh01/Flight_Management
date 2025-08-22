@@ -29,10 +29,28 @@
     {{ error }}
   </div>
 
+  <!-- Debug Information (remove in production) -->
+  <div class="debug-info">
+    <h4>Debug Info:</h4>
+    <p><strong>Loading:</strong> {{ loading }}</p>
+    <p><strong>Flights Count:</strong> {{ flights.length }}</p>
+    <p><strong>Filtered Flights Count:</strong> {{ filteredFlights.length }}</p>
+    <p><strong>Error:</strong> {{ error || 'None' }}</p>
+    <p><strong>Search Term:</strong> {{ searchCarrierName || 'None' }}</p>
+    <div class="debug-actions">
+      <button (click)="testApiConnection()" class="test-api-btn">Test API Connection</button>
+      <button (click)="checkBackendHealth()" class="health-btn">Check Backend Health</button>
+      <button (click)="loadAllFlights()" class="refresh-btn">Refresh Flights</button>
+    </div>
+  </div>
+
   <!-- Loading Spinner -->
   <div *ngIf="loading" class="loading-spinner">
     <div class="spinner"></div>
     <p>Loading flights...</p>
+    <button (click)="resetLoadingState()" class="reset-btn">
+      Reset Loading State
+    </button>
   </div>
 
   <!-- Flights Table -->
@@ -94,10 +112,17 @@
   <div *ngIf="!loading && filteredFlights.length === 0 && !error" class="no-flights">
     <div class="no-flights-icon">✈️</div>
     <h3>No flights found</h3>
-    <p *ngIf="searchCarrierName">No flights found for carrier "{{ searchCarrierName }}"</p>
-    <p *ngIf="!searchCarrierName">No flights are currently available</p>
-    <button *ngIf="searchCarrierName" (click)="clearSearch()" class="back-btn">
-      View All Flights
-    </button>
+    <p>{{ getNoFlightsMessage() }}</p>
+    <div class="no-flights-actions">
+      <button *ngIf="searchCarrierName" (click)="clearSearch()" class="back-btn">
+        View All Flights
+      </button>
+      <button (click)="testApiConnection()" class="test-api-btn">
+        Test API Connection
+      </button>
+      <button (click)="showSetupGuidance()" class="setup-btn">
+        Setup Guidance
+      </button>
+    </div>
   </div>
 </div>

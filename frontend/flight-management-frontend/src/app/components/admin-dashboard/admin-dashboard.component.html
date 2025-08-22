@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>Admin Dashboard</h1>
+      <div class="user-info">
+        <p class="user-name">Welcome, {{ userName }}!</p>
+        <p class="user-role">{{ userRole }}</p>
+      </div>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="welcome-section">
+      <h2>Administrative Control Panel</h2>
+      <p>Manage flights, carriers, users, and system operations.</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card" (click)="navigateTo('/flight-register')">
+        <div class="card-icon">✈️</div>
+        <h3>Register Flight</h3>
+        <p>Add new flights to the system</p>
+      </div>
+
+      <div class="dashboard-card" (click)="navigateTo('/carrier-register')">
+        <div class="card-icon">🏢</div>
+        <h3>Register Carrier</h3>
+        <p>Add new airline carriers</p>
+      </div>
+
+      <div class="dashboard-card" (click)="navigateTo('/view-flights')">
+        <div class="card-icon">📋</div>
+        <h3>View Flights</h3>
+        <p>Monitor all flight information</p>
+      </div>
+
+      <div class="dashboard-card" (click)="navigateTo('/admin-register')">
+        <div class="card-icon">👤</div>
+        <h3>Register Admin</h3>
+        <p>Create new administrator accounts</p>
+      </div>
+
+      <div class="dashboard-card" (click)="navigateTo('/update-flight')">
+        <div class="card-icon">✏️</div>
+        <h3>Update Flights</h3>
+        <p>Modify existing flight details</p>
+      </div>
+
+      <div class="dashboard-card" (click)="navigateTo('/update-carrier')">
+        <div class="card-icon">🔧</div>
+        <h3>Update Carriers</h3>
+        <p>Modify carrier information</p>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      <div class="action-buttons">
+        <button class="action-btn primary" (click)="navigateTo('/flight-register')">
+          Add New Flight
+        </button>
+        <button class="action-btn secondary" (click)="navigateTo('/carrier-register')">
+          Add New Carrier
+        </button>
+        <button class="action-btn tertiary" (click)="navigateTo('/view-flights')">
+          View All Flights
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

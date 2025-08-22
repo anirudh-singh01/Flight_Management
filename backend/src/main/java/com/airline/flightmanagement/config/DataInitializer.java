@@ -4,13 +4,18 @@ import com.airline.flightmanagement.entity.Carrier;
 import com.airline.flightmanagement.entity.DiscountType;
 import com.airline.flightmanagement.entity.Flight;
 import com.airline.flightmanagement.entity.RefundType;
+import com.airline.flightmanagement.entity.User;
+import com.airline.flightmanagement.entity.UserRole;
+import com.airline.flightmanagement.entity.CustomerCategory;
 import com.airline.flightmanagement.repository.CarrierRepository;
 import com.airline.flightmanagement.repository.FlightRepository;
+import com.airline.flightmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -21,13 +26,36 @@ public class DataInitializer implements CommandLineRunner {
     @Autowired
     private FlightRepository flightRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public void run(String... args) throws Exception {
         // Only initialize if no carriers exist
         if (carrierRepository.count() == 0) {
+            initializeUsers();
             initializeCarriers();
             initializeFlights();
         }
+    }
+
+    private void initializeUsers() {
+        // Create a test user with ID 1
+        User testUser = new User();
+        testUser.setUserName("testuser");
+        testUser.setPassword("password123");
+        testUser.setRole(UserRole.CUSTOMER);
+        testUser.setCustomerCategory(CustomerCategory.REGULAR);
+        testUser.setPhone("+1234567890");
+        testUser.setEmailId("test@example.com");
+        testUser.setAddress1("123 Test Street");
+        testUser.setCity("Test City");
+        testUser.setState("Test State");
+        testUser.setZipCode("12345");
+        testUser.setDob(LocalDate.of(1990, 1, 1));
+        userRepository.save(testUser);
+
+        System.out.println("✅ Test user initialized successfully!");
     }
 
     private void initializeCarriers() {

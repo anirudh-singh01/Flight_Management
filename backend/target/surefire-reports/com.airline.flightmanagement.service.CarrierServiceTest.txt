@@ -1,26 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.airline.flightmanagement.service.CarrierServiceTest
 -------------------------------------------------------------------------------
-Tests run: 16, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.112 s <<< FAILURE! -- in com.airline.flightmanagement.service.CarrierServiceTest
-com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict -- Time elapsed: 0.005 s <<< FAILURE!
-Wanted but not invoked:
-carrierRepository.existsByCarrierName(
-    "Test Airlines"
-);
--> at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
-
-However, there were exactly 2 interactions with this mock:
-carrierRepository.findById(1L);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:92)
-
-carrierRepository.save(
-    Carrier{carrierId=1, carrierName='Test Airlines', discountPercentage=25.00, refundPercentage=35.00, discountType=Platinum, refundType=20 Days Before Travel, description='null', isActive=true}
-);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:113)
-
-
-	at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.129 s -- in com.airline.flightmanagement.service.CarrierServiceTest

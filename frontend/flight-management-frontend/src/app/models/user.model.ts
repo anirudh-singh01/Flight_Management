@@ -11,7 +11,7 @@ export interface User {
   city: string;
   state: string;
   zipCode: string;
-  dob: Date;
+  dob: string;
   createdAt?: string;
 }
 

@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.airline.flightmanagement.service.BookingServiceTest
 -------------------------------------------------------------------------------
-Tests run: 17, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 0.470 s <<< FAILURE! -- in com.airline.flightmanagement.service.BookingServiceTest
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithCustomerCategoryDiscount -- Time elapsed: 0.386 s <<< FAILURE!
+Tests run: 17, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 0.537 s <<< FAILURE! -- in com.airline.flightmanagement.service.BookingServiceTest
+com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithCustomerCategoryDiscount -- Time elapsed: 0.432 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -10,75 +10,12 @@ org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
 	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
 	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithCustomerCategoryDiscount(BookingServiceTest.java:229)
+	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithCustomerCategoryDiscount(BookingServiceTest.java:230)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_Success -- Time elapsed: 0.015 s <<< FAILURE!
-org.mockito.exceptions.verification.TooManyActualInvocations: 
-
-flightRepository.findById(1L);
-Wanted 1 time:
--> at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_Success(BookingServiceTest.java:134)
-But was 2 times:
--> at com.airline.flightmanagement.service.BookingService.bookFlight(BookingService.java:42)
--> at com.airline.flightmanagement.service.BookingService.checkSeatAvailability(BookingService.java:88)
-
-
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_Success(BookingServiceTest.java:134)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_InsufficientSeats -- Time elapsed: 0.004 s <<< FAILURE!
-org.mockito.exceptions.verification.TooManyActualInvocations: 
-
-flightRepository.findById(1L);
-Wanted 1 time:
--> at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_InsufficientSeats(BookingServiceTest.java:187)
-But was 2 times:
--> at com.airline.flightmanagement.service.BookingService.bookFlight(BookingService.java:42)
--> at com.airline.flightmanagement.service.BookingService.checkSeatAvailability(BookingService.java:88)
-
-
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_InsufficientSeats(BookingServiceTest.java:187)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_NoDiscounts -- Time elapsed: 0.003 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <0> but was: <89.98>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
-	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
-	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_NoDiscounts(BookingServiceTest.java:270)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_CreateNewFlightSchedule -- Time elapsed: 0.005 s <<< FAILURE!
-org.mockito.exceptions.verification.TooManyActualInvocations: 
-
-flightScheduleRepository.save(
-    <any com.airline.flightmanagement.entity.FlightSchedule>
-);
-Wanted 1 time:
--> at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_CreateNewFlightSchedule(BookingServiceTest.java:289)
-But was 2 times:
--> at com.airline.flightmanagement.service.BookingService.getOrCreateFlightSchedule(BookingService.java:249)
--> at com.airline.flightmanagement.service.BookingService.bookFlight(BookingService.java:77)
-
-
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_CreateNewFlightSchedule(BookingServiceTest.java:289)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-
-com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithBulkBookingDiscount -- Time elapsed: 0.004 s <<< FAILURE!
+com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_NoDiscounts -- Time elapsed: 0.005 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -86,7 +23,20 @@ org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
 	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
 	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
 	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
-	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithBulkBookingDiscount(BookingServiceTest.java:249)
+	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_NoDiscounts(BookingServiceTest.java:273)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithBulkBookingDiscount -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at com.airline.flightmanagement.service.BookingServiceTest.testBookFlight_WithBulkBookingDiscount(BookingServiceTest.java:251)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
