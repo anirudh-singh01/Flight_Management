@@ -1,6 +1,7 @@
 package com.airline.flightmanagement.controller;
 
 import com.airline.flightmanagement.dto.FlightDTO;
+import com.airline.flightmanagement.dto.ApiResponse;
 import com.airline.flightmanagement.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/flights")
-@CrossOrigin(origins = "*")
 public class FlightController {
     
     @Autowired
@@ -146,46 +146,6 @@ public class FlightController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ApiResponse(false, "An error occurred while retrieving flights", null));
-        }
-    }
-    
-    /**
-     * Inner class for API response format
-     */
-    public static class ApiResponse {
-        private boolean success;
-        private String message;
-        private Object data;
-        
-        public ApiResponse(boolean success, String message, Object data) {
-            this.success = success;
-            this.message = message;
-            this.data = data;
-        }
-        
-        // Getters and Setters
-        public boolean isSuccess() {
-            return success;
-        }
-        
-        public void setSuccess(boolean success) {
-            this.success = success;
-        }
-        
-        public String getMessage() {
-            return message;
-        }
-        
-        public void setMessage(String message) {
-            this.message = message;
-        }
-        
-        public Object getData() {
-            return data;
-        }
-        
-        public void setData(Object data) {
-            this.data = data;
         }
     }
 }

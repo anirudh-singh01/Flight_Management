@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.airline.flightmanagement.service.CarrierServiceTest" time="0.112" tests="16" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.airline.flightmanagement.controller.BookingControllerTest" time="4.347" tests="6" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -47,7 +47,6 @@
     <property name="localRepository" value="C:\Users\aniru\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\aniru\AppData\Local\Temp\"/>
-    <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="java.version" value="21.0.5"/>
     <property name="user.dir" value="C:\Users\aniru\OneDrive\Desktop\flight_management\backend"/>
     <property name="os.arch" value="amd64"/>
@@ -64,42 +63,74 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testGetCarrierByName_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.07"/>
-  <testcase name="testGetCarrierById_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testRegisterCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testUpdateCarrier_InvalidPercentages" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_SameNameNoConflict" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.005">
-    <failure message="&#10;Wanted but not invoked:&#10;carrierRepository.existsByCarrierName(&#10;    &quot;Test Airlines&quot;&#10;);&#10;-&gt; at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)&#10;&#10;However, there were exactly 2 interactions with this mock:&#10;carrierRepository.findById(1L);&#10;-&gt; at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:92)&#10;&#10;carrierRepository.save(&#10;    Carrier{carrierId=1, carrierName=&apos;Test Airlines&apos;, discountPercentage=25.00, refundPercentage=35.00, discountType=Platinum, refundType=20 Days Before Travel, description=&apos;null&apos;, isActive=true}&#10;);&#10;-&gt; at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:113)&#10;&#10;" type="Wanted but not invoked"><![CDATA[Wanted but not invoked:
-carrierRepository.existsByCarrierName(
-    "Test Airlines"
-);
--> at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
+  <testcase name="testCancelBooking_BookingNotFound" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.317">
+    <system-out><![CDATA[07:38:19.366 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.airline.flightmanagement.controller.BookingControllerTest]: BookingControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:38:19.590 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.airline.flightmanagement.FlightManagementApplication for test class com.airline.flightmanagement.controller.BookingControllerTest
+07:38:19.726 [main] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
 
-However, there were exactly 2 interactions with this mock:
-carrierRepository.findById(1L);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:92)
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
 
-carrierRepository.save(
-    Carrier{carrierId=1, carrierName='Test Airlines', discountPercentage=25.00, refundPercentage=35.00, discountType=Platinum, refundType=20 Days Before Travel, description='null', isActive=true}
-);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:113)
+2025-08-22T07:38:20.130+05:30  INFO 34016 --- [           main] c.a.f.controller.BookingControllerTest   : Starting BookingControllerTest using Java 21.0.5 with PID 34016 (started by aniru in C:\Users\aniru\OneDrive\Desktop\flight_management\backend)
+2025-08-22T07:38:20.131+05:30 DEBUG 34016 --- [           main] c.a.f.controller.BookingControllerTest   : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-08-22T07:38:20.132+05:30  INFO 34016 --- [           main] c.a.f.controller.BookingControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2025-08-22T07:38:20.152+05:30 DEBUG 34016 --- [           main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@1d81e101
+2025-08-22T07:38:22.576+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 9 mappings in 'requestMappingHandlerMapping'
+2025-08-22T07:38:22.740+05:30 DEBUG 34016 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-22T07:38:22.797+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-22T07:38:22.860+05:30 DEBUG 34016 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-22T07:38:22.928+05:30  INFO 34016 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-08-22T07:38:22.928+05:30  INFO 34016 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-08-22T07:38:22.931+05:30  INFO 34016 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-08-22T07:38:22.960+05:30  INFO 34016 --- [           main] c.a.f.controller.BookingControllerTest   : Started BookingControllerTest in 3.249 seconds (process running for 4.666)
+2025-08-22T07:38:23.103+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.BookingController#cancelBooking(Long)
+2025-08-22T07:38:23.185+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:23.187+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.controller.BookingController$ApiResponse@4f402027]
+]]></system-out>
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\aniru\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.10\byte-buddy-agent-1.14.10.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="testCancelBookingAlternative_Success" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.038">
+    <system-out><![CDATA[2025-08-22T07:38:23.306+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.BookingController#cancelBookingAlternative(Long)
+2025-08-22T07:38:23.308+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:23.309+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.controller.BookingController$ApiResponse@4e2109fe]
+]]></system-out>
+  </testcase>
+  <testcase name="testCancelBooking_Success" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.011">
+    <system-out><![CDATA[2025-08-22T07:38:23.343+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.BookingController#cancelBooking(Long)
+2025-08-22T07:38:23.344+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:23.344+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.controller.BookingController$ApiResponse@6141647f]
+]]></system-out>
+  </testcase>
+  <testcase name="testCancelBooking_AlreadyCancelled" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.008">
+    <system-out><![CDATA[2025-08-22T07:38:23.355+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.BookingController#cancelBooking(Long)
+2025-08-22T07:38:23.357+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:23.357+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.controller.BookingController$ApiResponse@250a946]
+]]></system-out>
+  </testcase>
+  <testcase name="testCancelBooking_ServiceError" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.013">
+    <system-out><![CDATA[2025-08-22T07:38:23.366+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.BookingController#cancelBooking(Long)
+2025-08-22T07:38:23.369+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:23.370+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.controller.BookingController$ApiResponse@38dbeb39]
+]]></system-out>
+  </testcase>
+  <testcase name="testCancelBooking_InternalServerError" classname="com.airline.flightmanagement.controller.BookingControllerTest" time="0.031">
+    <error message="&#10;Checked exception is invalid for this method!&#10;Invalid: java.lang.Exception: Database connection failed" type="org.mockito.exceptions.base.MockitoException"><![CDATA[org.mockito.exceptions.base.MockitoException: 
 
-
-	at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
+Checked exception is invalid for this method!
+Invalid: java.lang.Exception: Database connection failed
+	at com.airline.flightmanagement.controller.BookingControllerTest.testCancelBooking_InternalServerError(BookingControllerTest.java:137)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></failure>
+]]></error>
   </testcase>
-  <testcase name="testRegisterCarrier_InvalidRefundPercentage" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetAllCarriers_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testUpdateCarrier_NameConflict" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testDeleteCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testRegisterCarrier_DuplicateName" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testRegisterCarrier_InvalidDiscountPercentage" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.001"/>
-  <testcase name="testGetCarrierByName_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetCarrierById_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetActiveCarriers_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
 </testsuite>

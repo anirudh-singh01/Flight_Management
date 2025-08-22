@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Carrier } from '../models/carrier.model';
+import { environment } from '../../environments/environment';
 
 export interface ApiResponse {
   success: boolean;
@@ -13,7 +14,7 @@ export interface ApiResponse {
   providedIn: 'root'
 })
 export class CarrierService {
-  private baseUrl = 'http://localhost:8080/api/carriers';
+  private baseUrl = environment.apiUrl + '/api/carriers';
 
   constructor(private http: HttpClient) { }
 

@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/carriers")
-@CrossOrigin(origins = "*")
 public class CarrierController {
     
     @Autowired

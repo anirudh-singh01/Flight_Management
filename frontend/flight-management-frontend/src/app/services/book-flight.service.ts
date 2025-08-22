@@ -34,7 +34,7 @@ export interface BookFlightResponse {
   providedIn: 'root'
 })
 export class BookFlightService {
-  private apiUrl = `${environment.apiUrl}/bookings`;
+  private apiUrl = `${environment.apiUrl}/api/bookings`;
 
   constructor(private http: HttpClient) { }
 

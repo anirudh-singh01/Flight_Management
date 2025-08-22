@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.airline.flightmanagement.service.CarrierServiceTest" time="0.112" tests="16" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.airline.flightmanagement.controller.FlightControllerTest" time="0.786" tests="4" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -47,7 +47,6 @@
     <property name="localRepository" value="C:\Users\aniru\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="C:\Users\aniru\AppData\Local\Temp\"/>
-    <property name="com.zaxxer.hikari.pool_number" value="1"/>
     <property name="java.version" value="21.0.5"/>
     <property name="user.dir" value="C:\Users\aniru\OneDrive\Desktop\flight_management\backend"/>
     <property name="os.arch" value="amd64"/>
@@ -64,42 +63,102 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testGetCarrierByName_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.07"/>
-  <testcase name="testGetCarrierById_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testRegisterCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testUpdateCarrier_InvalidPercentages" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_SameNameNoConflict" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.005">
-    <failure message="&#10;Wanted but not invoked:&#10;carrierRepository.existsByCarrierName(&#10;    &quot;Test Airlines&quot;&#10;);&#10;-&gt; at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)&#10;&#10;However, there were exactly 2 interactions with this mock:&#10;carrierRepository.findById(1L);&#10;-&gt; at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:92)&#10;&#10;carrierRepository.save(&#10;    Carrier{carrierId=1, carrierName=&apos;Test Airlines&apos;, discountPercentage=25.00, refundPercentage=35.00, discountType=Platinum, refundType=20 Days Before Travel, description=&apos;null&apos;, isActive=true}&#10;);&#10;-&gt; at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:113)&#10;&#10;" type="Wanted but not invoked"><![CDATA[Wanted but not invoked:
-carrierRepository.existsByCarrierName(
-    "Test Airlines"
-);
--> at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
+  <testcase name="testRegisterFlight_Success" classname="com.airline.flightmanagement.controller.FlightControllerTest" time="0.211">
+    <system-out><![CDATA[2025-08-22T07:38:23.438+05:30  INFO 34016 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.airline.flightmanagement.controller.FlightControllerTest]: FlightControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-22T07:38:23.456+05:30  INFO 34016 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.airline.flightmanagement.FlightManagementApplication for test class com.airline.flightmanagement.controller.FlightControllerTest
+2025-08-22T07:38:23.464+05:30  INFO 34016 --- [           main] o.s.b.d.r.RestartApplicationListener     : Restart disabled due to context in which it is running
 
-However, there were exactly 2 interactions with this mock:
-carrierRepository.findById(1L);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:92)
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
 
-carrierRepository.save(
-    Carrier{carrierId=1, carrierName='Test Airlines', discountPercentage=25.00, refundPercentage=35.00, discountType=Platinum, refundType=20 Days Before Travel, description='null', isActive=true}
-);
--> at com.airline.flightmanagement.service.CarrierService.updateCarrier(CarrierService.java:113)
-
-
-	at com.airline.flightmanagement.service.CarrierServiceTest.testUpdateCarrier_SameNameNoConflict(CarrierServiceTest.java:328)
+2025-08-22T07:38:23.517+05:30  INFO 34016 --- [           main] c.a.f.controller.FlightControllerTest    : Starting FlightControllerTest using Java 21.0.5 with PID 34016 (started by aniru in C:\Users\aniru\OneDrive\Desktop\flight_management\backend)
+2025-08-22T07:38:23.517+05:30 DEBUG 34016 --- [           main] c.a.f.controller.FlightControllerTest    : Running with Spring Boot v3.2.0, Spring v6.1.1
+2025-08-22T07:38:23.517+05:30  INFO 34016 --- [           main] c.a.f.controller.FlightControllerTest    : No active profile set, falling back to 1 default profile: "default"
+2025-08-22T07:38:23.521+05:30 DEBUG 34016 --- [           main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@563843f1
+2025-08-22T07:38:23.883+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 10 mappings in 'requestMappingHandlerMapping'
+2025-08-22T07:38:23.919+05:30 DEBUG 34016 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-08-22T07:38:23.927+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-08-22T07:38:23.930+05:30 DEBUG 34016 --- [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-08-22T07:38:23.941+05:30  INFO 34016 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-08-22T07:38:23.941+05:30  INFO 34016 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-08-22T07:38:23.942+05:30  INFO 34016 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-08-22T07:38:23.949+05:30  INFO 34016 --- [           main] c.a.f.controller.FlightControllerTest    : Started FlightControllerTest in 0.485 seconds (process running for 5.655)
+2025-08-22T07:38:23.974+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.FlightController#registerFlight(FlightDTO)
+2025-08-22T07:38:24.027+05:30 DEBUG 34016 --- [           main] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.airline.flightmanagement.dto.FlightDTO@6ff8e744]
+2025-08-22T07:38:24.158+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:24.158+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.dto.ApiResponse@38ba8b45]
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterFlight_ValidationError" classname="com.airline.flightmanagement.controller.FlightControllerTest" time="0.027">
+    <system-out><![CDATA[2025-08-22T07:38:24.167+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.FlightController#registerFlight(FlightDTO)
+2025-08-22T07:38:24.168+05:30 DEBUG 34016 --- [           main] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.airline.flightmanagement.dto.FlightDTO@23933031]
+2025-08-22T07:38:24.188+05:30  WARN 34016 --- [           main] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.airline.flightmanagement.controller.FlightController.registerFlight(com.airline.flightmanagement.dto.FlightDTO) with 4 errors: [Field error in object 'flightDTO' on field 'origin': rejected value [null]; codes [NotBlank.flightDTO.origin,NotBlank.origin,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightDTO.origin,origin]; arguments []; default message [origin]]; default message [Origin is required]] [Field error in object 'flightDTO' on field 'carrierId': rejected value [null]; codes [NotNull.flightDTO.carrierId,NotNull.carrierId,NotNull.java.lang.Long,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightDTO.carrierId,carrierId]; arguments []; default message [carrierId]]; default message [Carrier ID is required]] [Field error in object 'flightDTO' on field 'destination': rejected value [null]; codes [NotBlank.flightDTO.destination,NotBlank.destination,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightDTO.destination,destination]; arguments []; default message [destination]]; default message [Destination is required]] [Field error in object 'flightDTO' on field 'airFare': rejected value [null]; codes [NotNull.flightDTO.airFare,NotNull.airFare,NotNull.java.math.BigDecimal,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightDTO.airFare,airFare]; arguments []; default message [airFare]]; default message [Air fare is required]] ]
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterFlight_ServiceError" classname="com.airline.flightmanagement.controller.FlightControllerTest" time="0.01">
+    <system-out><![CDATA[2025-08-22T07:38:24.197+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.FlightController#registerFlight(FlightDTO)
+2025-08-22T07:38:24.198+05:30 DEBUG 34016 --- [           main] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.airline.flightmanagement.dto.FlightDTO@7165bde6]
+2025-08-22T07:38:24.200+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:24.200+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.dto.ApiResponse@4af84a76]
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterFlight_InternalServerError" classname="com.airline.flightmanagement.controller.FlightControllerTest" time="0.012">
+    <failure message="Status expected:&lt;500&gt; but was:&lt;400&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<500> but was:<400>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.airline.flightmanagement.controller.FlightControllerTest.testRegisterFlight_InternalServerError(FlightControllerTest.java:117)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ]]></failure>
+    <system-out><![CDATA[2025-08-22T07:38:24.210+05:30 DEBUG 34016 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.airline.flightmanagement.controller.FlightController#registerFlight(FlightDTO)
+2025-08-22T07:38:24.211+05:30 DEBUG 34016 --- [           main] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.airline.flightmanagement.dto.FlightDTO@6d7bb5cc]
+2025-08-22T07:38:24.212+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2025-08-22T07:38:24.212+05:30 DEBUG 34016 --- [           main] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.airline.flightmanagement.dto.ApiResponse@390a07a0]
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/flights/registerFlight
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"194"]
+             Body = {"flightId":null,"carrierId":1,"carrierName":null,"origin":"New York","destination":"Los Angeles","airFare":299.99,"seatCapacityBusiness":20,"seatCapacityEconomy":150,"seatCapacityExecutive":10}
+    Session Attrs = {}
+
+Handler:
+             Type = com.airline.flightmanagement.controller.FlightController
+           Method = com.airline.flightmanagement.controller.FlightController#registerFlight(FlightDTO)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 400
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"success":false,"message":"Unexpected error","data":null}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
   </testcase>
-  <testcase name="testRegisterCarrier_InvalidRefundPercentage" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetAllCarriers_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testUpdateCarrier_NameConflict" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testDeleteCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testRegisterCarrier_DuplicateName" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.003"/>
-  <testcase name="testUpdateCarrier_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testRegisterCarrier_InvalidDiscountPercentage" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.001"/>
-  <testcase name="testGetCarrierByName_NotFound" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetCarrierById_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
-  <testcase name="testGetActiveCarriers_Success" classname="com.airline.flightmanagement.service.CarrierServiceTest" time="0.002"/>
 </testsuite>

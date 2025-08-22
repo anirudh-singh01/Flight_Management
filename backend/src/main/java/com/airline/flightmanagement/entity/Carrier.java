@@ -29,12 +29,12 @@ public class Carrier {
     @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal refundPercentage;
     
-    @NotBlank(message = "Discount type is required")
+    @NotNull(message = "Discount type is required")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private DiscountType discountType;
     
-    @NotBlank(message = "Refund type is required")
+    @NotNull(message = "Refund type is required")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RefundType refundType;
