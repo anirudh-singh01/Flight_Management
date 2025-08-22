@@ -1,0 +1,414 @@
+.view-bookings-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.user-id-input {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.user-id-input label {
+  font-weight: 500;
+  color: #555;
+  font-size: 14px;
+}
+
+.form-control {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100px;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.content {
+  min-height: 400px;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.error-message {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  color: #721c24;
+}
+
+.error-message p {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+}
+
+/* No Bookings State */
+.no-bookings {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.no-bookings p {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+}
+
+/* Bookings Table */
+.bookings-table-container {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  font-size: 14px;
+}
+
+.bookings-table th {
+  background-color: #f8f9fa;
+  padding: 15px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  white-space: nowrap;
+}
+
+.bookings-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: top;
+}
+
+.booking-row:hover {
+  background-color: #f8f9fa;
+}
+
+.booking-id {
+  font-weight: 600;
+  color: #3498db;
+  font-family: 'Courier New', monospace;
+}
+
+.flight-details {
+  min-width: 200px;
+}
+
+.route {
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.carrier {
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+.user-name {
+  font-weight: 500;
+  color: #555;
+}
+
+.seats {
+  text-align: center;
+  font-weight: 600;
+  color: #27ae60;
+}
+
+.category-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.category-economy {
+  background-color: #e8f5e8;
+  color: #27ae60;
+}
+
+.category-business {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.category-executive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.travel-date {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-booked {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-completed {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-default {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.amount {
+  min-width: 120px;
+}
+
+.final-amount {
+  font-weight: 600;
+  color: #27ae60;
+  font-size: 16px;
+}
+
+.discount-info {
+  margin-top: 5px;
+}
+
+.discount-amount {
+  display: block;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.discount-reason {
+  display: block;
+  color: #7f8c8d;
+  font-size: 11px;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+.booking-date {
+  color: #7f8c8d;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-bookings-container {
+    padding: 15px;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+  }
+  
+  .bookings-table th,
+  .bookings-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+  
+  .flight-details {
+    min-width: 150px;
+  }
+  
+  .amount {
+    min-width: 100px;
+  }
+}
+
+/* Actions Column */
+.actions {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.25rem;
+}
+
+/* Refund Information */
+.refund-info {
+  margin-top: 0.25rem;
+  padding: 0.25rem;
+  background-color: #f8f9fa;
+  border-radius: 0.25rem;
+  border-left: 3px solid #28a745;
+}
+
+.refund-amount {
+  display: block;
+  color: #28a745;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.refund-percentage {
+  display: block;
+  color: #6c757d;
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* Spinner for loading state */
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Status badges for cancelled bookings */
+.status-cancelled {
+  background-color: #6c757d;
+  color: white;
+}
+
+.text-muted {
+  color: #6c757d !important;
+  font-style: italic;
+}

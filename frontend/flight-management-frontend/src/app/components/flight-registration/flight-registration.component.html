@@ -1,0 +1,157 @@
+<div class="flight-registration-container">
+  <div class="header">
+    <h2>Flight Registration</h2>
+    <p>Register a new flight with carrier information and seat capacities</p>
+  </div>
+
+  <div class="form-container">
+    <form [formGroup]="flightForm" (ngSubmit)="onSubmit()" class="flight-form">
+      
+      <!-- Carrier Selection -->
+      <div class="form-group">
+        <label for="carrierId">Carrier *</label>
+        <select 
+          id="carrierId" 
+          formControlName="carrierId" 
+          [class.invalid]="isFieldInvalid('carrierId')"
+          class="form-control">
+          <option value="">Select a carrier</option>
+          <option *ngFor="let carrier of carriers" [value]="carrier.carrierId">
+            {{ carrier.carrierName }}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="getFieldError('carrierId')">
+          {{ getFieldError('carrierId') }}
+        </div>
+      </div>
+
+      <!-- Origin -->
+      <div class="form-group">
+        <label for="origin">Origin *</label>
+        <input 
+          type="text" 
+          id="origin" 
+          formControlName="origin" 
+          [class.invalid]="isFieldInvalid('origin')"
+          placeholder="Enter origin city/airport"
+          class="form-control">
+        <div class="error-message" *ngIf="getFieldError('origin')">
+          {{ getFieldError('origin') }}
+        </div>
+      </div>
+
+      <!-- Destination -->
+      <div class="form-group">
+        <label for="destination">Destination *</label>
+        <input 
+          type="text" 
+          id="destination" 
+          formControlName="destination" 
+          [class.invalid]="isFieldInvalid('destination')"
+          placeholder="Enter destination city/airport"
+          class="form-control">
+        <div class="error-message" *ngIf="getFieldError('destination')">
+          {{ getFieldError('destination') }}
+        </div>
+      </div>
+
+      <!-- Air Fare -->
+      <div class="form-group">
+        <label for="airFare">Air Fare *</label>
+        <input 
+          type="number" 
+          id="airFare" 
+          formControlName="airFare" 
+          [class.invalid]="isFieldInvalid('airFare')"
+          placeholder="Enter air fare amount"
+          step="0.01"
+          min="0.01"
+          class="form-control">
+        <div class="error-message" *ngIf="getFieldError('airFare')">
+          {{ getFieldError('airFare') }}
+        </div>
+      </div>
+
+      <!-- Seat Capacities Section -->
+      <div class="seat-capacities-section">
+        <h3>Seat Capacities</h3>
+        
+        <!-- Business Class -->
+        <div class="form-group">
+          <label for="seatCapacityBusiness">Business Class Seats *</label>
+          <input 
+            type="number" 
+            id="seatCapacityBusiness" 
+            formControlName="seatCapacityBusiness" 
+            [class.invalid]="isFieldInvalid('seatCapacityBusiness')"
+            placeholder="Enter business class seat capacity"
+            min="1"
+            class="form-control">
+          <div class="error-message" *ngIf="getFieldError('seatCapacityBusiness')">
+            {{ getFieldError('seatCapacityBusiness') }}
+          </div>
+        </div>
+
+        <!-- Economy Class -->
+        <div class="form-group">
+          <label for="seatCapacityEconomy">Economy Class Seats *</label>
+          <input 
+            type="number" 
+            id="seatCapacityEconomy" 
+            formControlName="seatCapacityEconomy" 
+            [class.invalid]="isFieldInvalid('seatCapacityEconomy')"
+            placeholder="Enter economy class seat capacity"
+            min="1"
+            class="form-control">
+          <div class="error-message" *ngIf="getFieldError('seatCapacityEconomy')">
+            {{ getFieldError('seatCapacityEconomy') }}
+          </div>
+        </div>
+
+        <!-- Executive Class -->
+        <div class="form-group">
+          <label for="seatCapacityExecutive">Executive Class Seats *</label>
+          <input 
+            type="number" 
+            id="seatCapacityExecutive" 
+            formControlName="seatCapacityExecutive" 
+            [class.invalid]="isFieldInvalid('seatCapacityExecutive')"
+            placeholder="Enter executive class seat capacity"
+            min="1"
+            class="form-control">
+          <div class="error-message" *ngIf="getFieldError('seatCapacityExecutive')">
+            {{ getFieldError('seatCapacityExecutive') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div class="messages">
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        <div class="success-message" *ngIf="successMessage">
+          {{ successMessage }}
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          (click)="goBack()" 
+          class="btn btn-secondary"
+          [disabled]="loading">
+          Back
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="loading || flightForm.invalid">
+          <span *ngIf="loading">Registering...</span>
+          <span *ngIf="!loading">Register Flight</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

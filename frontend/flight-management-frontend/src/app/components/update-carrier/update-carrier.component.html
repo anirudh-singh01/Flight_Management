@@ -1,0 +1,142 @@
+<div class="update-carrier-container">
+  <div class="header">
+    <h2>Update Carrier Details</h2>
+    <p *ngIf="currentCarrier">Editing Carrier ID: {{ currentCarrier.carrierId }}</p>
+    <p>Modify the carrier information below</p>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading && !currentCarrier" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading carrier details...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+
+  <!-- Update Carrier Form -->
+  <form *ngIf="currentCarrier && !loading" [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="update-carrier-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="carrierName">Carrier Name *</label>
+        <input 
+          type="text" 
+          id="carrierName" 
+          formControlName="carrierName" 
+          [class.invalid]="isFieldInvalid('carrierName')"
+          class="form-control"
+          placeholder="Enter carrier name"
+        >
+        <div *ngIf="isFieldInvalid('carrierName')" class="error-text">
+          {{ getFieldError('carrierName') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="discountPercentage">Discount Percentage *</label>
+        <input 
+          type="number" 
+          id="discountPercentage" 
+          formControlName="discountPercentage" 
+          [class.invalid]="isFieldInvalid('discountPercentage')"
+          class="form-control"
+          placeholder="0.00"
+          step="0.01"
+          min="0.01"
+          max="99.99"
+        >
+        <div *ngIf="isFieldInvalid('discountPercentage')" class="error-text">
+          {{ getFieldError('discountPercentage') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="refundPercentage">Refund Percentage *</label>
+        <input 
+          type="number" 
+          id="refundPercentage" 
+          formControlName="refundPercentage" 
+          [class.invalid]="isFieldInvalid('refundPercentage')"
+          class="form-control"
+          placeholder="0.00"
+          step="0.01"
+          min="0.01"
+          max="99.99"
+        >
+        <div *ngIf="isFieldInvalid('refundPercentage')" class="error-text">
+          {{ getFieldError('refundPercentage') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="discountType">Discount Type *</label>
+        <select 
+          id="discountType" 
+          formControlName="discountType" 
+          [class.invalid]="isFieldInvalid('discountType')"
+          class="form-control"
+        >
+          <option value="">Select discount type</option>
+          <option *ngFor="let option of discountTypeOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('discountType')" class="error-text">
+          {{ getFieldError('discountType') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="refundType">Refund Type *</label>
+        <select 
+          id="refundType" 
+          formControlName="refundType" 
+          [class.invalid]="isFieldInvalid('refundType')"
+          class="form-control"
+        >
+          <option value="">Select refund type</option>
+          <option *ngFor="let option of refundTypeOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('refundType')" class="error-text">
+          {{ getFieldError('refundType') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group full-width">
+        <label for="description">Description</label>
+        <textarea 
+          id="description" 
+          formControlName="description" 
+          class="form-control"
+          placeholder="Enter carrier description (optional)"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" (click)="onCancel()" class="btn btn-secondary" [disabled]="loading">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading || updateForm.invalid">
+        <span *ngIf="loading" class="spinner-small"></span>
+        {{ loading ? 'Updating...' : 'Update Carrier' }}
+      </button>
+    </div>
+  </form>
+</div>

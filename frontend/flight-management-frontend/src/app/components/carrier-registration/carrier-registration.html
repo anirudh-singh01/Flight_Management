@@ -1,0 +1,172 @@
+<div class="carrier-registration-container">
+  <div class="registration-card">
+    <div class="card-header">
+      <h2>Carrier Registration</h2>
+      <p>Register a new airline carrier with discount and refund policies</p>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div *ngIf="message" class="message-container">
+      <div class="message" [ngClass]="messageType">
+        {{ message }}
+      </div>
+    </div>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+      
+      <!-- Carrier Name -->
+      <div class="form-group">
+        <label for="carrierName" class="form-label">
+          Carrier Name <span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="carrierName"
+          formControlName="carrierName"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('carrierName') }"
+          placeholder="Enter carrier name"
+        />
+        <div *ngIf="isFieldInvalid('carrierName')" class="error-message">
+          {{ getErrorMessage('carrierName') }}
+        </div>
+      </div>
+
+      <!-- Discount Percentage -->
+      <div class="form-group">
+        <label for="discountPercentage" class="form-label">
+          Discount Percentage <span class="required">*</span>
+        </label>
+        <input
+          type="number"
+          id="discountPercentage"
+          formControlName="discountPercentage"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('discountPercentage') }"
+          placeholder="0.00"
+          step="0.01"
+          min="0.01"
+          max="99.99"
+        />
+        <div *ngIf="isFieldInvalid('discountPercentage')" class="error-message">
+          {{ getErrorMessage('discountPercentage') }}
+        </div>
+        <small class="form-help">Enter percentage between 0.01 and 99.99</small>
+      </div>
+
+      <!-- Discount Type -->
+      <div class="form-group">
+        <label for="discountType" class="form-label">
+          Discount Type <span class="required">*</span>
+        </label>
+        <select
+          id="discountType"
+          formControlName="discountType"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('discountType') }"
+        >
+          <option value="">Select discount type</option>
+          <option *ngFor="let option of discountTypeOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('discountType')" class="error-message">
+          {{ getErrorMessage('discountType') }}
+        </div>
+      </div>
+
+      <!-- Refund Percentage -->
+      <div class="form-group">
+        <label for="refundPercentage" class="form-label">
+          Refund Percentage <span class="required">*</span>
+        </label>
+        <input
+          type="number"
+          id="refundPercentage"
+          formControlName="refundPercentage"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('refundPercentage') }"
+          placeholder="0.00"
+          step="0.01"
+          min="0.01"
+          max="99.99"
+        />
+        <div *ngIf="isFieldInvalid('refundPercentage')" class="error-message">
+          {{ getErrorMessage('refundPercentage') }}
+        </div>
+        <small class="form-help">Enter percentage between 0.01 and 99.99</small>
+      </div>
+
+      <!-- Refund Type -->
+      <div class="form-group">
+        <label for="refundType" class="form-label">
+          Refund Type <span class="required">*</span>
+        </label>
+        <select
+          id="refundType"
+          formControlName="refundType"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': isFieldInvalid('refundType') }"
+        >
+          <option value="">Select refund type</option>
+          <option *ngFor="let option of refundTypeOptions" [value]="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+        <div *ngIf="isFieldInvalid('refundType')" class="error-message">
+          {{ getErrorMessage('refundType') }}
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          class="form-control"
+          rows="3"
+          placeholder="Enter optional description"
+        ></textarea>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="isLoading || registrationForm.invalid"
+        >
+          <span *ngIf="isLoading" class="spinner"></span>
+          {{ isLoading ? 'Registering...' : 'Register Carrier' }}
+        </button>
+        
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="clearForm()"
+          [disabled]="isLoading"
+        >
+          Clear Form
+        </button>
+      </div>
+    </form>
+
+    <!-- Information Section -->
+    <div class="info-section">
+      <h3>Discount Types</h3>
+      <ul>
+        <li><strong>30/60/90 Days:</strong> Early booking discounts</li>
+        <li><strong>Bulk:</strong> Group booking discounts</li>
+        <li><strong>Silver/Gold/Platinum:</strong> Loyalty tier discounts</li>
+      </ul>
+      
+      <h3>Refund Types</h3>
+      <ul>
+        <li><strong>2 Days:</strong> Last-minute cancellation</li>
+        <li><strong>10 Days:</strong> Short notice cancellation</li>
+        <li><strong>20 Days:</strong> Advance cancellation</li>
+      </ul>
+    </div>
+  </div>
+</div>

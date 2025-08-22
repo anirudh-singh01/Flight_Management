@@ -1,0 +1,181 @@
+<div class="book-flight-container">
+  <div class="header">
+    <h1>Book Your Flight</h1>
+    <p>Select your flight details and complete your booking</p>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Success Message -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Booking Form -->
+    <div class="booking-form-section">
+      <h2>Flight Details</h2>
+      <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" (ngModelChange)="onFormChange()">
+        
+        <!-- Flight Selection -->
+        <div class="form-group">
+          <label for="flightId">Select Flight *</label>
+          <select 
+            #flightSelect
+            id="flightId" 
+            formControlName="flightId" 
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('flightId')"
+            (change)="onFlightSelection(flightSelect.value)">
+            <option value="">Choose a flight...</option>
+            <option *ngFor="let flight of availableFlights" [value]="flight.flightId">
+              {{ flight.origin }} → {{ flight.destination }} - {{ flight.carrierName }} 
+              ({{ flight.airFare | currency:'USD' }})
+            </option>
+          </select>
+          <div *ngIf="isFieldInvalid('flightId')" class="invalid-feedback">
+            {{ getErrorMessage('flightId') }}
+          </div>
+        </div>
+
+        <!-- Number of Seats -->
+        <div class="form-group">
+          <label for="noOfSeats">Number of Seats *</label>
+          <input 
+            type="number" 
+            id="noOfSeats" 
+            formControlName="noOfSeats" 
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('noOfSeats')"
+            min="1" 
+            max="10">
+          <div *ngIf="isFieldInvalid('noOfSeats')" class="invalid-feedback">
+            {{ getErrorMessage('noOfSeats') }}
+          </div>
+        </div>
+
+        <!-- Seat Category -->
+        <div class="form-group">
+          <label for="seatCategory">Seat Category *</label>
+          <select 
+            id="seatCategory" 
+            formControlName="seatCategory" 
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('seatCategory')">
+            <option value="">Choose seat category...</option>
+            <option *ngFor="let category of seatCategories" [value]="category.value">
+              {{ category.label }}
+            </option>
+          </select>
+          <div *ngIf="isFieldInvalid('seatCategory')" class="invalid-feedback">
+            {{ getErrorMessage('seatCategory') }}
+          </div>
+        </div>
+
+        <!-- Date of Travel -->
+        <div class="form-group">
+          <label for="dateOfTravel">Date of Travel *</label>
+          <input 
+            type="date" 
+            id="dateOfTravel" 
+            formControlName="dateOfTravel" 
+            class="form-control"
+            [class.is-invalid]="isFieldInvalid('dateOfTravel')"
+            [min]="getMinDate()">
+          <div *ngIf="isFieldInvalid('dateOfTravel')" class="invalid-feedback">
+            {{ getErrorMessage('dateOfTravel') }}
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+          <button 
+            type="submit" 
+            class="btn btn-primary btn-block"
+            [disabled]="!bookingForm.valid || isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+            {{ isLoading ? 'Booking...' : 'Book Flight' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Booking Summary -->
+    <div class="booking-summary-section" *ngIf="bookingSummary">
+      <h2>Booking Summary</h2>
+      <div class="summary-card">
+        <div class="flight-info">
+          <h3>{{ bookingSummary.flightDetails.origin }} → {{ bookingSummary.flightDetails.destination }}</h3>
+          <p class="carrier">{{ bookingSummary.flightDetails.carrierName }}</p>
+        </div>
+        
+        <div class="booking-details">
+          <div class="detail-row">
+            <span class="label">Date of Travel:</span>
+            <span class="value">{{ bookingSummary.dateOfTravel | date:'mediumDate' }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Seat Category:</span>
+            <span class="value">{{ bookingSummary.seatCategory }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Number of Seats:</span>
+            <span class="value">{{ bookingSummary.noOfSeats }}</span>
+          </div>
+        </div>
+
+        <div class="pricing-breakdown">
+          <div class="detail-row">
+            <span class="label">Base Fare (per seat):</span>
+            <span class="value">{{ bookingSummary.baseFare | currency:'USD' }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Subtotal:</span>
+            <span class="value">{{ bookingSummary.estimatedTotal | currency:'USD' }}</span>
+          </div>
+          <div class="detail-row discount" *ngIf="bookingSummary.estimatedDiscount > 0">
+            <span class="label">Estimated Discount:</span>
+            <span class="value">-{{ bookingSummary.estimatedDiscount | currency:'USD' }}</span>
+          </div>
+          <div class="detail-row total">
+            <span class="label">Total Amount:</span>
+            <span class="value">{{ bookingSummary.finalAmount | currency:'USD' }}</span>
+          </div>
+        </div>
+
+        <div class="discount-info" *ngIf="bookingSummary.estimatedDiscount > 0">
+          <p><strong>Discounts Applied:</strong></p>
+          <ul>
+            <li>Advance booking (30+ days): 15%</li>
+            <li>Customer category benefits</li>
+            <li>Bulk booking (5+ seats): 10%</li>
+          </ul>
+          <p class="note">* Final discounts will be calculated based on your actual booking details</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="btn btn-secondary" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Back to Flights
+    </button>
+    <button class="btn btn-info" (click)="viewMyBookings()">
+      <i class="fas fa-list"></i> View My Bookings
+    </button>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div *ngIf="isLoading" class="loading-overlay">
+    <div class="loading-spinner">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Processing your booking...</p>
+    </div>
+  </div>
+</div>

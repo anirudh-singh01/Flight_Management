@@ -1,0 +1,103 @@
+<div class="view-flights-container">
+  <div class="header">
+    <h2>View Flights</h2>
+    <p>Browse and search through all available flights</p>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-box">
+      <input 
+        type="text" 
+        [(ngModel)]="searchCarrierName" 
+        placeholder="Enter carrier name to search..."
+        class="search-input"
+        (keyup.enter)="searchByCarrier()"
+      >
+      <button (click)="searchByCarrier()" class="search-btn" [disabled]="loading">
+        <span *ngIf="!loading">Search</span>
+        <span *ngIf="loading">Searching...</span>
+      </button>
+      <button (click)="clearSearch()" class="clear-btn" [disabled]="loading">
+        Clear
+      </button>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading flights...</p>
+  </div>
+
+  <!-- Flights Table -->
+  <div *ngIf="!loading && filteredFlights.length > 0" class="flights-table-container">
+    <div class="table-header">
+      <h3>Available Flights ({{ filteredFlights.length }})</h3>
+    </div>
+    
+    <div class="table-responsive">
+      <table class="flights-table">
+        <thead>
+          <tr>
+            <th>Flight ID</th>
+            <th>Carrier</th>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Air Fare</th>
+            <th>Business Seats</th>
+            <th>Economy Seats</th>
+            <th>Executive Seats</th>
+            <th>Total Seats</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of filteredFlights" class="flight-row">
+            <td>{{ flight.flightId }}</td>
+            <td class="carrier-name">{{ flight.carrierName || 'N/A' }}</td>
+            <td>{{ flight.origin }}</td>
+            <td>{{ flight.destination }}</td>
+            <td class="air-fare">${{ (flight.airFare || 0).toFixed(2) }}</td>
+            <td>{{ flight.seatCapacityBusiness || 0 }}</td>
+            <td>{{ flight.seatCapacityEconomy || 0 }}</td>
+            <td>{{ flight.seatCapacityExecutive || 0 }}</td>
+            <td class="total-seats">{{ getTotalSeats(flight) }}</td>
+            <td class="actions">
+              <button 
+                (click)="editFlight(flight.flightId!)" 
+                class="edit-btn"
+                title="Edit Flight"
+              >
+                ✏️ Edit
+              </button>
+              <button 
+                (click)="bookFlight(flight.flightId!)" 
+                class="book-btn"
+                title="Book Flight"
+              >
+                🎫 Book
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- No Flights Message -->
+  <div *ngIf="!loading && filteredFlights.length === 0 && !error" class="no-flights">
+    <div class="no-flights-icon">✈️</div>
+    <h3>No flights found</h3>
+    <p *ngIf="searchCarrierName">No flights found for carrier "{{ searchCarrierName }}"</p>
+    <p *ngIf="!searchCarrierName">No flights are currently available</p>
+    <button *ngIf="searchCarrierName" (click)="clearSearch()" class="back-btn">
+      View All Flights
+    </button>
+  </div>
+</div>
